@@ -23,11 +23,11 @@ for (name, fam, old) in list:
     x = len(name) + len(fam)
     if x >= 15:
         y += 1
-print("Студентов у которых имя + фамилия больше 15 символов: ", y)
+print("\nСтудентов у которых имя + фамилия больше 15 символов: ", y)
 girls = []
 for (name, fam, old) in list:
     if name[-1] == "а":
         girls.append(name)
 girls.sort(reverse=True)
 
-print(girls)
+print("\nСписок девушек в обратном алфавитном порядке:", girls)
