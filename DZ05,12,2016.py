@@ -66,7 +66,7 @@ for o in n_girls:
     for i in alphabet:
         alphabet_in_girls += o.count(i)
 #print(vowels_in_girls, consonants_in_girls, alphabet_in_girls)
-shpora = open("shpora.txt", "w")
+shpora = open("shpora.txt", "w", encoding='utf-8')
 shpora.write("\tЗдравствуйте, я шпаргалка для преподавателя!\n")
 shpora.write("\tЯ помогу вам не забыть ответы на вопросы!")
 shpora.write("\n\n\tСписток студентов:\n")
