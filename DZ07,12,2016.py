@@ -46,7 +46,7 @@ def dell(slist):
         del slist[key]
         print('Студент', key, 'удален.')
     else:
-        print('Выбранного вами студента нет в списке.')
+        print('Выбранного вами студента нет в списке, либо спсок пуст.')
     return slist
 def save(slist):
     f = open('student.dat', 'wb')
@@ -62,8 +62,11 @@ def log():
     f.write('\n')
     f.close()
 def show(slist):
-    for i in slist.items():
-        print(i)
+    if len(slist) <1:
+        print('Список студентов пуст, сначала нужно добавить студентов в список!')
+    else:
+        for i in slist.items():
+            print(i)
 def main():
     log()
     choise = None
