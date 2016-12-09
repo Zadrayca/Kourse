@@ -14,5 +14,6 @@ print (x)
 a = (2, 7)
 b = (6, 1)
 c = (12, 5)
-
+z = str(now.year, now.month, now.day, now.time)
+print(z)
 
