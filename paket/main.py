@@ -1,9 +1,10 @@
-from calc import summa, multi, pow
+from calk import pow, multi, summa
+from calk.pow import pow as r
 
-print('имя модуля: {}'.format(__name__))
 
 
-y = multi(3, 5)
-x = summa(5, 7)
-z = pow(3, 5)
+y = multi.multi(3, 5)
+x = summa.summa(5, 7)
+z = r(3, 5)
 print(x, y, z)
+print(dir(pow))
