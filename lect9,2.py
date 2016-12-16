@@ -35,15 +35,24 @@ e.send('First')
 
 
 # нужно с помощю генератора выдать поезд
+# стоимость грузов в каждом вагоне
+from random import randint
+from math import log
+from decimal import Decimal
+from decimal import getcontext
+getcontext().prec = 10
 
 def poezd(count):
-    yield 'Паравоз'
+    yield ('Паравоз', 150)
     y = 'Вагон '
-    i = 0
     for a in range(1, count + 1):
-        i += 1
-        yield y + str(i)
+        x = randint(1, 100)
+        x = (Decimal(x) / Decimal('150'))
+        yield y + str(a) + ' Вес груза :' + str(x), x
 
+summa = 0
+for a, b in poezd(5):
+    print(a, b)
+    summa += b
 
-for a in poezd(5):
-    print(a)
+print('summa (b): {}'.format(summa))
