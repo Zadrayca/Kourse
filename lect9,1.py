@@ -3,7 +3,7 @@ list = [
     ["Николай", "Никлоаев", 19, True],
     ["Виктор", "Викторов", 20, False],
     ["Иван", "Иванов", 21, True],
-    ["Владимир", "Жириновский", 33, True],
+    ["Вван", "Жириновский", 33, True],
     ["Константин", "Хабенский", 28, False],
     ["Ольга", "Петрова", 18, False],
     ["Светлана", "Пархоменко", 22, True],
@@ -31,7 +31,7 @@ def gen1(in_gen, filter, count):
             if i == count:
                 return
 
-for a in gen1(list, filter='ван', count=2):
+for a in gen1(list, filter='ван', count=5):
     print(a)
 
 
