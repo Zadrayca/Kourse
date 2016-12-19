@@ -82,3 +82,4 @@ def pict():
     for row in x:
         print(' '.join([str(elem) for elem in row]))
 
+pict()
