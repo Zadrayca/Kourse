@@ -49,3 +49,7 @@ q.name = 'Николай'
 q.age = 40
 print(q.name)
 q.work(q.age, q.produs)
+
+z = Worker()
+z.work(z.age, z.produs)
+print(z.age, z.name)
