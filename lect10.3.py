@@ -25,6 +25,7 @@ def zam(funk):
 
 @zam
 def some_funk():
-    print('Сработал sum_funk')
+    x = print('Сработал sum_funk')
+    return x
 
 some_funk()
