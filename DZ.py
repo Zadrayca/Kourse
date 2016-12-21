@@ -15,3 +15,23 @@
 #
 #
 #
+
+
+def pic(funk):
+    def new_funk(weels, lenght, height, x):
+        g = [['#'] * lenght for i in range(height)]
+        for row in g:
+            print(' '.join([str(elem) for elem in row]))
+        print('O ' * weels)
+        x += 1
+        return funk(weels, lenght, height, x)
+    return new_funk
+
+
+
+@pic
+def paravoz(weels, lenght, height, x=0):
+    weels = 10
+    return print('Паравоз №', x, '.', weels, 'колес,', lenght, 'длинна,', height, 'высота.')
+
+paravoz(5, 7, 3, 0)
