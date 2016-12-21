@@ -8,6 +8,12 @@
 # def vagon(weels, lenght, height):
 #     return weels, lenght, height
 
+def count(funk):
+    def new_funk(weels, lenght, height, ):
+        pass
+
+
+
 
 def pic(funk):
     def new_funk(weels, lenght, height, x):
@@ -22,16 +28,14 @@ x = 0
 
 @pic
 def paravoz(weels, lenght, height, x):
-    x += 1
     return print('Паравоз №', x, '.', weels, 'колес,', lenght, 'длинна,', height, 'высота.')
 
 #paravoz(5, 7, 3, x)
 
 y = 0
 @pic
-def vagon(weels, lenght, height, x):
-    x += 1
-    return print('Вагон  №', x, '.', weels, 'колес,', lenght, 'длинна,', height, 'высота.')
+def vagon(weels, lenght, height, y):
+    return print('Вагон  №', y, '.', weels, 'колес,', lenght, 'длинна,', height, 'высота.')
 
 #vagon(3, 5, 3, x)
 
@@ -51,24 +55,26 @@ def menu():
     return choise
 
 
-def main():
+def main(x, y):
     choise = None
     print('Здравствуйте, эта программа нарисует для вас паравоз и вагоны.')
     while choise != 0:
         choise = menu()
         if choise == 1:
             try:
+                x += 1
                 paravoz(int(input('Введите кличество колес:')), int(input('Введите длинну:')), int(input('Введите высоту:')), x)
             except:
                 print('Ошибка!')
         elif choise == 2:
             try:
-                vagon(int(input('Введите кличество колес:')), int(input('Введите длинну:')), int(input('Введите высоту:')), x)
+                y += 1
+                vagon(int(input('Введите кличество колес:')), int(input('Введите длинну:')), int(input('Введите высоту:')), y)
             except:
                 print('Ошибка!')
     input('Спасибо за использование нашего П.О. , нажмите Ентер чтобы выйти.')
 
-main()
+main(x, y)
 
 
 
