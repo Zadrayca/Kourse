@@ -6,7 +6,7 @@ class Vagon:
 class KupeVagon(Vagon):
     money_count = 3000
     personal = 2
-    beds = 36
+    beds = 10
     tables = 9
 
     def money_coef(self):
