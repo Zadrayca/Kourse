@@ -1,6 +1,6 @@
 
 import sys
-from PyQt5.QtWebKitWidgets import QWebView
+
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5.uic import loadUi
 
@@ -13,7 +13,7 @@ class Browzer(QMainWindow):
     def initUi(self):
         loadUi('mainwindow.ui', self)
         self.statusBar().showMessage('Приложение запущенно')
-        self
+
 
 
 
