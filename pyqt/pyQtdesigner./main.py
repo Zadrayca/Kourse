@@ -3,7 +3,7 @@ import sys
 
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from PyQt5.uic import loadUi
-
+import PyQt5.QtWebEngineWidgets
 
 class Browzer(QMainWindow):
     def __init__(self, *args, **kwargs):
