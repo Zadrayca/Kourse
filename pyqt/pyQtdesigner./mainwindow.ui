@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>664</width>
+    <width>543</width>
     <height>583</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindowww</string>
+   <string>Browzer</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="mainLayout">
     <property name="spacing">
      <number>0</number>
     </property>
@@ -31,8 +31,8 @@
      <number>0</number>
     </property>
     <item>
-     <widget class="QWidget" name="widget" native="true">
-      <layout class="QHBoxLayout" name="horizontalLayout">
+     <widget class="QWidget" name="navigation" native="true">
+      <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,0">
        <property name="leftMargin">
         <number>6</number>
        </property>
@@ -47,15 +47,38 @@
        </property>
        <item>
         <widget class="QToolButton" name="backBtn">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
-          <string>...</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="icons/file1.qrc">
+           <normaloff>:/newPrefix/1484604553_left.png</normaloff>:/newPrefix/1484604553_left.png</iconset>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QToolButton" name="forwardBtn">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
-          <string>...</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="icons/file1.qrc">
+           <normaloff>:/newPrefix/1484604547_right.png</normaloff>:/newPrefix/1484604547_right.png</iconset>
          </property>
         </widget>
        </item>
@@ -64,28 +87,33 @@
        </item>
        <item>
         <widget class="QToolButton" name="searchBtn">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
-          <string>...</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="icons/file1.qrc">
+           <normaloff>:/newPrefix/1484605375_find.png</normaloff>:/newPrefix/1484605375_find.png</iconset>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QToolButton" name="bookmarksBtn">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
-          <string>...</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="icons/file1.qrc">
+           <normaloff>:/newPrefix/1484604567_star.png</normaloff>:/newPrefix/1484604567_star.png</iconset>
          </property>
         </widget>
        </item>
       </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QWebView" name="webView">
-      <property name="url">
-       <url>
-        <string>about:blank</string>
-       </url>
-      </property>
      </widget>
     </item>
    </layout>
@@ -95,7 +123,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>664</width>
+     <width>543</width>
      <height>25</height>
     </rect>
    </property>
@@ -104,13 +132,14 @@
      <string>     Файл</string>
     </property>
     <addaction name="openAction"/>
-    <addaction name="closeAaction"/>
+    <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menu_2">
     <property name="title">
      <string>Справка</string>
     </property>
-    <addaction name="aboutAction"/>
+    <addaction name="actionAbout"/>
+    <addaction name="actionAboutQt"/>
    </widget>
    <addaction name="FileMenu"/>
    <addaction name="menu_2"/>
@@ -127,7 +156,7 @@
     <string>Открыть</string>
    </property>
   </action>
-  <action name="closeAaction">
+  <action name="actionExit">
    <property name="text">
     <string>Выйти</string>
    </property>
@@ -135,22 +164,22 @@
     <string>Выйти</string>
    </property>
   </action>
-  <action name="aboutAction">
+  <action name="actionAbout">
    <property name="text">
     <string>О программе</string>
    </property>
    <property name="statusTip">
     <string>О программе</string>
+   </property>
+  </action>
+  <action name="actionAboutQt">
+   <property name="text">
+    <string>O Qt</string>
    </property>
   </action>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QWebView</class>
-   <extends>QWidget</extends>
-   <header>QtWebKitWidgets/QWebView</header>
-  </customwidget>
- </customwidgets>
- <resources/>
+ <resources>
+  <include location="icons/file1.qrc"/>
+ </resources>
  <connections/>
 </ui>
