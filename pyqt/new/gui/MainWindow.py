@@ -2,15 +2,13 @@
 
 from PyQt5.QtWidgets import QMainWindow
 
-#from PyQt5.uic import loadUi
-
 from .ui.Ui_Main_Window import Ui_MainWindow
 
 from .NotesWidget import NotesWidget
 
 from core.NoteModel import NoteModel
 
-#from .NotesEditDialog import NoteEditDialog
+
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, *args, **kwargs):
@@ -27,12 +25,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.stackedWidget.addWidget(self.notesWidget)
         self.stackedWidget.setCurrentWidget(self.notesWidget)
 
-        # self.notesEditDialog = NoteEditDialog(self)
-        # self.stackedWidget.addWidget(self.notesEditDialog)
-
-
-
-        # loadUi('ui/main_window.ui', self)
-
     def init_signals(self):
-        pass
+        self.actionAdd.triggered.connect(self.notesWidget.add_new_note)
+
+        self.actionExit.triggered.connect(self.close)
+
+        self.actionEdit.triggered.connect(self.notesWidget.edit_selected_note)
+
+        self.actionRemove.triggered.connect(self.notesWidget.remove_selected_notes)
+
+        self.notesWidget.selection_changed.connect(self.update_menu)
+
+    def update_menu(self):
+        selected = self.notesWidget.selected_rows()
+        self.actionEdit.setEnabled(len(selected) == 1)
+        self.actionRemove.setEnabled(bool(selected))
+

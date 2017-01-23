@@ -28,6 +28,8 @@ class Ui_Form(object):
         self.horizontalLayout.addItem(spacerItem)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.notesView = QtWidgets.QTableView(Form)
+        self.notesView.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.notesView.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.notesView.setObjectName("notesView")
         self.verticalLayout.addWidget(self.notesView)
 
