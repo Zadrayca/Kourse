@@ -24,6 +24,7 @@ class Browzer(QMainWindow):
         self.webView = QWebView(self)
         self.mainLayout.addWidget(self.webView)
         self.init_history_buttons()
+        self.act_book()
 
 
 
@@ -39,6 +40,7 @@ class Browzer(QMainWindow):
         self.webView.urlChanged.connect(self.set_query)
         self.webView.titleChanged.connect(self.on_title_changed)
         self.webView.page().linkHovered.connect(self.on_link_hovered)
+        self.actionBook.triggered.connect(self.act_book)
 
     def init_history_buttons(self):
         history = self.webView.page().history()
@@ -66,6 +68,16 @@ class Browzer(QMainWindow):
     def on_link_hovered(self, url, *args, **kwargs):
         self.statusBar().showMessage(url) # по идее url.toString()
 
+
+    def add_favor(self):
+        pass
+
+
+    def act_book(self):
+        if self.actionBook:
+            self.bookWidget.close()
+        else:
+            self.bookWidget.open()
 
 
 
