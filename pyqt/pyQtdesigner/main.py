@@ -45,7 +45,6 @@ class Browzer(QMainWindow):
         self.textBrowser.anchorClicked.connect(self.webView.load)
 
 
-
     def init_history_buttons(self):
         history = self.webView.page().history()
 

@@ -42,8 +42,7 @@ class Browzer(QMainWindow):
         self.bookWidget.setVisible(False)
         self.actionBook.triggered.connect(self.bookWidget.setVisible)
         self.bookmarksBtn.clicked.connect(self.add_favor)
-        #self.textBrowser.(self.webView)
-
+        self.textBrowser.anchorClicked.connect(self.webView.load)
 
 
     def init_history_buttons(self):
@@ -81,7 +80,7 @@ class Browzer(QMainWindow):
 
         # self.textBrowser.append('<a herf="%s">%s</a>') % url
 
-        x = ('<a herf="%s">%s</a>') % (url, url)
+        x = ('<a href="%s">%s</a>') % (url, url)
         print(x)
         self.textBrowser.append(x)
 
