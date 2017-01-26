@@ -127,7 +127,7 @@
      <x>0</x>
      <y>0</y>
      <width>543</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="FileMenu">
@@ -177,7 +177,17 @@
    <widget class="QWidget" name="dockWidgetContents">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QTextBrowser" name="textBrowser"/>
+      <widget class="QTextBrowser" name="textBrowser">
+       <property name="inputMethodHints">
+        <set>Qt::ImhNone</set>
+       </property>
+       <property name="openExternalLinks">
+        <bool>false</bool>
+       </property>
+       <property name="openLinks">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>

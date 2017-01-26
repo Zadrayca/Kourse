@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 from PyQt5.uic import loadUi
 
 try:
-    from PyQt5.QtWebEngineWidgets import QWebEngineViev as QWebView
+    from PyQt5.QtWebEngineWidgets import QWebEngineView as QWebView
 except ImportError:
     from PyQt5.QtWebKitWidgets import QWebView
 
@@ -24,7 +24,6 @@ class Browzer(QMainWindow):
         self.webView = QWebView(self)
         self.mainLayout.addWidget(self.webView)
         self.init_history_buttons()
-        self.act_book()
 
 
 
@@ -40,7 +39,12 @@ class Browzer(QMainWindow):
         self.webView.urlChanged.connect(self.set_query)
         self.webView.titleChanged.connect(self.on_title_changed)
         self.webView.page().linkHovered.connect(self.on_link_hovered)
-        self.actionBook.triggered.connect(self.act_book)
+        self.bookWidget.setVisible(False)
+        self.actionBook.triggered.connect(self.bookWidget.setVisible)
+        self.bookmarksBtn.clicked.connect(self.add_favor)
+        #self.textBrowser.(self.webView)
+
+
 
     def init_history_buttons(self):
         history = self.webView.page().history()
@@ -69,16 +73,17 @@ class Browzer(QMainWindow):
         self.statusBar().showMessage(url) # по идее url.toString()
 
 
-    def add_favor(self):
-        pass
+    def add_favor(self, title):
+        #<a href="url">text</a>
+        #self.textBrowser.insertHtml(self.query.text())
 
+        url = self.query.text()
 
-    def act_book(self):
-        if self.actionBook:
-            self.bookWidget.close()
-        else:
-            self.bookWidget.open()
+        # self.textBrowser.append('<a herf="%s">%s</a>') % url
 
+        x = ('<a herf="%s">%s</a>') % (url, url)
+        print(x)
+        self.textBrowser.append(x)
 
 
 

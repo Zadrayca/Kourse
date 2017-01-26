@@ -44,8 +44,6 @@ class CurrensyConverter(QMainWindow):
         self.resultAmount.valueChanged.connect(self.onVal)
 
 
-
-
     def initLayouts(self):
         self.w = QWidget()
 
@@ -61,9 +59,12 @@ class CurrensyConverter(QMainWindow):
 
         self.setCentralWidget(self.w)
 
-    def onVal(self,):
+    def onVal(self):
         value = self.srcAmount.value() + self.resultAmount.value()
         self.convertBtn.setEnabled(bool(value))
+
+
+
 
 
     def onClick(self):
@@ -78,6 +79,7 @@ class CurrensyConverter(QMainWindow):
         if value2:
             self.srcAmount.setValue(value2 * Course().get())
             self.resultAmount.setValue(0.00)
+
 
 
     def onClean(self):
