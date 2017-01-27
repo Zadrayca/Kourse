@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>1484605375_find.png</file>
+    <file>1484604581_arrowright.png</file>
+    <file>1484604567_star.png</file>
+    <file>1484604553_left.png</file>
+    <file>1484604547_right.png</file>
+    <file>1484604157_like.png</file>
+    <file>1484604141_minus.png</file>
+    <file>1484604127_dog.png</file>
+    <file>1484604117_list.png</file>
+    <file>1484604045_ok_circle.png</file>
+    <file>1484604022_down.png</file>
+  </qresource>
+</RCC>
