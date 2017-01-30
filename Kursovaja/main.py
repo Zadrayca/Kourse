@@ -16,8 +16,20 @@ class Button(QToolButton):
 
         self.setCheckable(True)
 
-    def on_click(self):
-        print(Button.actions())
+
+
+    # def on_click(self):
+    #
+    #     self.setDisabled(True)
+
+        # if Button.click:
+        #     Button.setDisabled(True)
+
+    # def on_click(self):
+    #
+    #     Button.setDisabled(True)
+
+
     # def on_click(self):
     #     self.QToolButton.setCheckable(True)
     #     # if QToolButton.clicked:
@@ -31,7 +43,10 @@ class Saper(QMainWindow):
         self.init_ui()
         self.grid1()
         self.init_signals()
-        #button0.setDisabled(True)
+        # self.name[5].setDisabled(True)
+
+
+
 
 
     def init_ui(self):
@@ -41,14 +56,37 @@ class Saper(QMainWindow):
         self.setMinimumSize(300, 340)
         self.setMaximumSize(300, 340)
 
-    def init_signals(self):
-        pass
 
-        #QToolButton.triggered.connect(Button.on_click)
+
+    def init_signals(self):
+
+        global q
+
+        q = []
+
+        for i in range(81):
+
+            q.append(i)
+
+        for i in q:
+
+            # if self.name[i].triggered():
+            #     self.name[i].setDisabled(True)
+
+            self.name[i].clicked.connect(self.on_click)
+
+        return q
 
     def on_click(self):
+        pass
 
-        print(self.button)
+        # if self.name[3].clicked(bool):
+
+
+
+        if self.click() == True:
+
+            self.setDisabled(True)
 
 
     def grid1(self):
@@ -59,24 +97,31 @@ class Saper(QMainWindow):
 
         # button = self.toolButton
 
-        #self.name = None
+        self.name = []
+
         x = 0
 
         positions = [(i, j) for i in range(9) for j in range(9)]
 
         for position in positions:
-            x += 1
+
+
+            self.name.append('button' + str(x))
 
             #self.name = ('button' + str(x))
 
-            print('%s') % ('button' + str(x))
-
-            '%s' = Button() % ('button' + str(x))
 
 
+            self.name[x] = Button()
 
 
-            self.grid.addWidget('%s', *position) % ('button' + str(x))
+
+
+            self.grid.addWidget(self.name[x], *position)
+
+            x += 1
+
+        return self.name
 
         #self.name.button0.setDisabled(True)
 
