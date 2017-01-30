@@ -12,8 +12,12 @@ class Button(QToolButton):
 
         self.setMinimumSize(35, 35)
 
+
+
         self.setCheckable(True)
 
+    def on_click(self):
+        print(Button.actions())
     # def on_click(self):
     #     self.QToolButton.setCheckable(True)
     #     # if QToolButton.clicked:
@@ -27,6 +31,7 @@ class Saper(QMainWindow):
         self.init_ui()
         self.grid1()
         self.init_signals()
+        #button0.setDisabled(True)
 
 
     def init_ui(self):
@@ -37,8 +42,9 @@ class Saper(QMainWindow):
         self.setMaximumSize(300, 340)
 
     def init_signals(self):
+        pass
 
-        self.button.triggered.connect(self.close)
+        #QToolButton.triggered.connect(Button.on_click)
 
     def on_click(self):
 
@@ -47,20 +53,32 @@ class Saper(QMainWindow):
 
     def grid1(self):
 
-        grid = QGridLayout(self)
+        self.grid = QGridLayout(self)
 
-        self.centr.setLayout(grid)
+        self.centr.setLayout(self.grid)
 
         # button = self.toolButton
 
-
+        #self.name = None
+        x = 0
 
         positions = [(i, j) for i in range(9) for j in range(9)]
 
         for position in positions:
-            self.button = Button()
+            x += 1
 
-            grid.addWidget(self.button, *position)
+            #self.name = ('button' + str(x))
+
+            print('%s') % ('button' + str(x))
+
+            '%s' = Button() % ('button' + str(x))
+
+
+
+
+            self.grid.addWidget('%s', *position) % ('button' + str(x))
+
+        #self.name.button0.setDisabled(True)
 
 
 
