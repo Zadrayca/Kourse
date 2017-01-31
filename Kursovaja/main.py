@@ -1,11 +1,11 @@
 
-import sys
+import sys, random
 
-from PyQt5.QtWidgets import QMainWindow, QApplication, QToolButton, QGridLayout
+from PyQt5.QtWidgets import QMainWindow, QApplication, QToolButton, QGridLayout, QPushButton
 
 from PyQt5.uic import loadUi
 
-class Button(QToolButton):
+class Button(QPushButton):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -53,29 +53,31 @@ class Saper(QMainWindow):
         loadUi('KMainWindow.ui', self)
 
         #self.resize(370, 370)
-        self.setMinimumSize(300, 340)
-        self.setMaximumSize(300, 340)
+        self.setMinimumSize(340, 380)
+        self.setMaximumSize(340, 380)
 
 
 
     def init_signals(self):
+        pass
 
-        global q
 
-        q = []
-
-        for i in range(81):
-
-            q.append(i)
-
-        for i in q:
-
-            # if self.name[i].triggered():
-            #     self.name[i].setDisabled(True)
-
-            self.name[i].clicked.connect(self.on_click)
-
-        return q
+        # # global q
+        # #
+        # # q = []
+        # #
+        # # for i in range(81):
+        # #
+        # #     q.append(i)
+        # #
+        # # for i in q:
+        # #
+        # #     # if self.name[i].triggered():
+        # #     #     self.name[i].setDisabled(True)
+        # #
+        # #     self.name[i].clicked.connect(self.on_click)
+        #
+        # return q
 
     def on_click(self):
         pass
@@ -84,9 +86,10 @@ class Saper(QMainWindow):
 
 
 
-        if self.click() == True:
-
-            self.setDisabled(True)
+        # if self.click() == True:
+        #
+        #     self.setDisabled(True)
+        #
 
 
     def grid1(self):
@@ -95,35 +98,101 @@ class Saper(QMainWindow):
 
         self.centr.setLayout(self.grid)
 
-        # button = self.toolButton
+        q = 100
+        b = 10
 
-        self.name = []
+        m = [-1, 0, 1]
 
-        x = 0
+        find = [(i, j) for i in range(-1, 2) for j in m]
 
-        positions = [(i, j) for i in range(9) for j in range(9)]
+        print(find)
 
-        for position in positions:
+        self.butt = []
+        self.bomb = []
+        self.names = [0 for i in range(100)]
+
+        self.plase = [(i, j) for i in range(1, 11) for j in range(1, 11)]
+        print(self.plase)
+        while len(self.bomb) != b:
+            z = random.choice(self.plase)
+            if z not in self.bomb:
+                self.bomb.append(z)
+
+        print(self.bomb)
+
+        for i in range(q):
+            self.butt.append('button' + str(i))
+        # print(butt)
+        # print(plase[99], butt[99])
+
+        g = -1
+        for x, y in self.plase:
+            print('plase', x, y)
+            g += 1
+
+            for i, j in find:
+                print('find', i, j)
+                z = 0
+
+                # if x == a and y == b:
+                #     z += 1
+                for a, b in self.bomb:
+                    print('bomb', a, b)
+
+                    r = None
+                    t = None
+                    r = x + i
+                    t = y + j
+                    print('x', x, 'y', y)
+                    print('r', r, 't', t)
+                    print('bomb', a, b)
+
+                    if r == a and t == b:
+                        z += 1
+                self.names[g] += z
+
+        print(self.names)
+        print(len(self.names))
+        c = 0
+        for position, name in zip(self.plase, self.names):
+            # if name == "0":
+            #     name = 'B'
+
+            self.butt[c] = Button(str(name))
+
+            self.grid.addWidget(self.butt[c], *position)
+
+            for position, in zip(self.bomb):
 
 
-            self.name.append('button' + str(x))
+                self.butt[c] = Button("*")
 
-            #self.name = ('button' + str(x))
+                self.grid.addWidget(self.butt[c], *position)
 
-
-
-            self.name[x] = Button()
-
-
-
-
-            self.grid.addWidget(self.name[x], *position)
-
-            x += 1
-
-        return self.name
-
-        #self.name.button0.setDisabled(True)
+        # self.name = []
+        #
+        # x = 0
+        #
+        # positions = [(i, j) for i in range(10) for j in range(10)]
+        #
+        # for position in positions:
+        #
+        #     self.name.append('button' + str(x))
+        #
+        #     #self.name = ('button' + str(x))
+        #
+        #     self.name[x] = Button()
+        #
+        #
+        #
+        #
+        #     self.grid.addWidget(self.name[x], *position)
+        #
+        #     x += 1
+        #
+        # return self.name
+        #
+        # #self.name.button0.setDisabled(True)
 
 
 
