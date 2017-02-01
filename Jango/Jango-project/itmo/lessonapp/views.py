@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 
 from .models import Lesson, Student, Attendance
 from django.http import HttpResponse, Http404
+from .forms import AttendanceForm
 
 # Create your views here.
 
@@ -32,8 +33,14 @@ def lesson(request, lesson_id):
     #     raise Http404
     _lesson = get_object_or_404(Lesson, pk=lesson_id)
     return render(request, 'lessonapp/lesson.html', {'lesson': _lesson})
-#
-# def attendance(request):
-#     from .form = AttendanceForm(request.POST)
-#
-#
+
+
+def attendance(request):
+    if request.method == 'POST':
+        form = AttendanceForm(request.POST)
+        _student = request.POST.get('student')
+
+    else:
+        form = AttendanceForm()
+
+    return render(request, 'lessonapp/attendance-form.html', {'form': form})

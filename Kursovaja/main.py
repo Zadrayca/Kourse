@@ -1,7 +1,9 @@
 
 import sys, random
 
-from PyQt5.QtWidgets import QMainWindow, QApplication, QToolButton, QGridLayout, QPushButton
+from PyQt5.QtCore import QTimer
+
+from PyQt5.QtWidgets import QMainWindow, QApplication, QToolButton, QGridLayout, QPushButton, QLCDNumber
 
 from PyQt5.uic import loadUi
 
@@ -43,7 +45,9 @@ class Saper(QMainWindow):
         self.init_ui()
         self.grid1()
         self.init_signals()
-        # self.name[5].setDisabled(True)
+        # self.time()
+        # self.count()
+
 
 
 
@@ -53,10 +57,37 @@ class Saper(QMainWindow):
         loadUi('KMainWindow.ui', self)
 
         #self.resize(370, 370)
-        self.setMinimumSize(340, 380)
-        self.setMaximumSize(340, 380)
+        self.setMinimumSize(330, 400)
+        self.setMaximumSize(330, 400)
 
 
+    # def count(self):
+    #
+    #
+    #
+    #
+    #
+    #
+    # def time(self):
+    #
+    #     self.timer = QTimer()
+    #
+    #     #self.lcd.display(100)
+    #
+    #
+    #
+    #     # self.value = 1000
+    #     # self.lcd.display(self.value)
+    #     # self.value = self.value - 1
+    #     #self.lcd.intValue()
+    #
+    #
+    #     self.timer.timeout.connect(self.count)
+    #
+    #     self.timer.start(1000)
+    #
+    #
+    #
 
     def init_signals(self):
         pass
@@ -94,9 +125,13 @@ class Saper(QMainWindow):
 
     def grid1(self):
 
-        self.grid = QGridLayout(self)
+        self.grid = self.gridLayout
 
         self.centr.setLayout(self.grid)
+
+
+
+
 
         q = 100
         b = 10

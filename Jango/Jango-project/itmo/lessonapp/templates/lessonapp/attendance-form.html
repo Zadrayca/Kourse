@@ -1,1 +1,8 @@
-{% extends "itmo/base-template.html" %}
+{% extends "lessonapp/base-template.html" %}
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Save">
+</form>
+{% endblock %}
