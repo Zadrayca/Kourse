@@ -28,4 +28,4 @@ class Lesson(models.Model):
 class Attendance(models.Model):
     student = ForeignKey(Student, on_delete=models.CASCADE)
     lesson = ForeignKey(Lesson, on_delete=models.CASCADE)
-    created_ad = DateTimeField()
+    created_ad = DateTimeField(default=datetime.datetime.now)
