@@ -57,7 +57,7 @@ class Saper(QMainWindow):
         self.init_ui()
         self.grid1()
         self.init_signals()
-        # self.time()
+        self.init_time()
         # self.count()
 
 
@@ -73,33 +73,21 @@ class Saper(QMainWindow):
         self.setMaximumSize(330, 400)
 
 
-    # def count(self):
-    #
-    #
-    #
-    #
-    #
-    #
-    # def time(self):
-    #
-    #     self.timer = QTimer()
-    #
-    #     #self.lcd.display(100)
-    #
-    #
-    #
-    #     # self.value = 1000
-    #     # self.lcd.display(self.value)
-    #     # self.value = self.value - 1
-    #     #self.lcd.intValue()
-    #
-    #
-    #     self.timer.timeout.connect(self.count)
-    #
-    #     self.timer.start(1000)
-    #
-    #
-    #
+    def count(self):
+        value = self.lcd.intValue()
+
+        if not value:
+            self.timer.stop()
+            # свой сигнал
+        else:
+            self.lcd.display(value - 1)
+
+
+    def init_time(self):
+        self.timer = QTimer()
+        self.lcd.display(10)
+        self.timer.timeout.connect(self.count)
+        self.timer.start(1000)
 
     def init_signals(self):
         pass
