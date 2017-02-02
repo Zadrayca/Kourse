@@ -1,41 +1,53 @@
 
 import sys, random
 
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, pyqtSignal
 
-from PyQt5.QtWidgets import QMainWindow, QApplication, QToolButton, QGridLayout, QPushButton, QLCDNumber
+from PyQt5.QtWidgets import QMainWindow, QApplication, QToolButton, QGridLayout, QPushButton, QLCDNumber, QSizePolicy
 
 from PyQt5.uic import loadUi
+
 
 class Button(QPushButton):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-
         self.setMinimumSize(35, 35)
-
-
+        self.setMaximumSize(35, 35)
+        # self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
         self.setCheckable(True)
 
+        self.clicked.connect(self.open)
+
+    def open(self):
+        raise NotImplementedError('Не реализовано!')
 
 
-    # def on_click(self):
-    #
-    #     self.setDisabled(True)
+class Bomb(Button):
+    wasted = pyqtSignal()
 
-        # if Button.click:
-        #     Button.setDisabled(True)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
 
-    # def on_click(self):
-    #
-    #     Button.setDisabled(True)
+    def open(self):
+        self.setDisabled(True)
+        self.setText('*')
+        self.wasted.emit()
 
 
-    # def on_click(self):
-    #     self.QToolButton.setCheckable(True)
-    #     # if QToolButton.clicked:
-    #     #     self.QToolButton.setDisabled(True)
+class Plant(Button):
+    shooted = pyqtSignal(int)
+
+    def __init__(self, text, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.cellValue = text
+
+    def open(self):
+        self.setDisabled(True)
+        self.setText(str(self.cellValue))
+        self.shooted.emit(self.cellValue)
 
 
 class Saper(QMainWindow):
@@ -193,14 +205,12 @@ class Saper(QMainWindow):
             # if name == "0":
             #     name = 'B'
 
-            self.butt[c] = Button(str(name))
+            self.butt[c] = Plant(name)
 
             self.grid.addWidget(self.butt[c], *position)
 
             for position, in zip(self.bomb):
-
-
-                self.butt[c] = Button("*")
+                self.butt[c] = Bomb()
 
                 self.grid.addWidget(self.butt[c], *position)
 
