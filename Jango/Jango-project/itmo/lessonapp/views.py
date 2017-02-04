@@ -67,7 +67,7 @@ def auth_view(request):
             form = EnterForm(request.POST)
     else:
         form = EnterForm()
-    return render(request, 'lessonapp/auth-form.html', {'form': form})
+    return render(request, 'lessonapp/reg-form.html', {'form': form, 'button_text': 'Enter'})
 
 
 def logout_view(request):
@@ -94,4 +94,4 @@ def reg_view(request):
         form = RegForm(request.POST)
     else:
         form = RegForm()
-    return render(request, 'lessonapp/reg-form.html', {'form': form})
+    return render(request, 'lessonapp/reg-form.html', {'form': form, 'button_text': 'Save'})

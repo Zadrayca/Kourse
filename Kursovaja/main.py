@@ -12,8 +12,8 @@ class Button(QPushButton):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.setMinimumSize(35, 35)
-        self.setMaximumSize(35, 35)
+        self.setMinimumSize(30, 30)
+        self.setMaximumSize(30, 30)
         # self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
         self.setCheckable(True)
@@ -47,6 +47,21 @@ class Plant(Button):
     def open(self):
         self.setDisabled(True)
         self.setText(str(self.cellValue))
+        self.shooted.emit(self.cellValue)
+
+
+
+class Free(Button):
+    miss = pyqtSignal()
+
+    def __init__(self, text, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.cellValue = text
+
+    def open(self):
+        self.setDisabled(True)
+        self.setText(str())
         self.shooted.emit(self.cellValue)
 
 
@@ -129,17 +144,10 @@ class Saper(QMainWindow):
 
         self.centr.setLayout(self.grid)
 
-
-
-
-
         q = 100
         b = 10
-
         m = [-1, 0, 1]
-
         find = [(i, j) for i in range(-1, 2) for j in m]
-
         print(find)
 
         self.butt = []
@@ -193,7 +201,9 @@ class Saper(QMainWindow):
             # if name == "0":
             #     name = 'B'
 
+
             self.butt[c] = Plant(name)
+
 
             self.grid.addWidget(self.butt[c], *position)
 

@@ -1,7 +1,7 @@
 {% extends "lessonapp/base-template.html" %}
-
 {% block content %}
-<h3>{{lesson.theme}}</h3>
-<p>{{lesson.description}}</p>
-
+    <h3>{{lesson.theme}}</h3>
+    {% for student in lesson.attendance_set.all %}
+        {{student.student.name}}
+    {% endfor %}
 {% endblock %}
