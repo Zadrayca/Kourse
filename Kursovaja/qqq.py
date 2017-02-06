@@ -49,7 +49,7 @@ class Plant(Button):
         self.setDisabled(True)
         self.setText(str(self.cellValue))
         self.shooted.emit(self.cellValue)
-        print(self.position)
+        #print(self.position)
 
 
 
@@ -71,10 +71,10 @@ class Free(Button):
     def open(self):
         self.setDisabled(True)
         self.setText(str())
-        self.miss.connect(self.alg)
+        #self.miss.connect(self.alg)
 
 
-    def alg(self):
+    #def alg(self):
         q = -1
         for x, y in self.plase:
             q += 1
@@ -89,7 +89,7 @@ class Free(Button):
                     Plant(' ', (x, y)).open()        # Ну и тут соответственно
 
 
-            print(self.position)
+            #print(self.position)
 
 
     #def alg(self, position):
