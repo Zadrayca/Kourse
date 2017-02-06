@@ -55,38 +55,64 @@ class Plant(Button):
 
 class Free(Button):
     miss = pyqtSignal()
+    plase = [(i, j) for i in range(1, 11) for j in range(1, 11)]
+    pl = []
 
-    def __init__(self, text, posit, *args, **kwargs):
+
+    def __init__(self, posit, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.cellValue = text
-        self.position = posit
-        self.plase = [(i, j) for i in range(1, 11) for j in range(1, 11)]
+        #self.cellValue = text
+        #self.position = posit
+        self.pl.append(posit)
         self.butt = []
         for i in range(100):
             self.butt.append('button' + str(i))
         m = [-1, 0, 1]
         self.find = [(i, j) for i in range(-1, 2) for j in m]
+        self.find.pop(4)
+        self.lfind = []
+        # for i, j in self.find:
+        #     a = self.position[0]; b = self.position[1]
+        #     a += i; b += j
+        #     self.lfind.append((a, b))
+        # print(self.lfind[5])
 
     def open(self):
         self.setDisabled(True)
         self.setText(str())
-        #self.miss.connect(self.alg)
+        print(self.posit)
+        # for i, j in self.find:
+        #     #a = self.position[0]; b = self.position[1]
+        #     a += i; b += j
+        #     self.lfind.append((a, b))
+        # for z in self.lfind:
+        #     if z in self.pl:
+        #         Free(z).open()
 
+
+
+
+
+
+
+        #print(self.lfind)
+        #self.miss.connect(self.alg)
+        #a = self.position[0]; b = self.position[1]
 
     #def alg(self):
-        q = -1
-        for x, y in self.plase:
-            q += 1
-            a = self.position[0]; b = self.position[1]
-            for w, e in self.find:
-
-                a -= w
-                b -= e
-                if x == a and y == b:
-                    Free(' ', (x, y)).open()         # Вот тут нифига не понимаю как вызвать открытие кнопки(((
-                else:
-                    Plant(' ', (x, y)).open()        # Ну и тут соответственно
+        # q = -1
+        # for x, y in self.plase:
+        #     q += 1
+        #     a = self.position[0]; b = self.position[1]
+        #     for w, e in self.find:
+        #
+        #         a -= w
+        #         b -= e
+        #         if x == a and y == b:
+        #             Free(' ', (x, y)).open()         # Вот тут нифига не понимаю как вызвать открытие кнопки(((
+        #         else:
+        #             Plant(' ', (x, y)).open()        # Ну и тут соответственно
 
 
             #print(self.position)
@@ -237,22 +263,35 @@ class Saper(QMainWindow):
 
         print(self.names)
         print(len(self.names))
-        c = 0
+        c = -1
         for position, name in zip(self.plase, self.names):
             # if name == "0":
             #     name = 'B'
+            c += 1
 
             if name == 0:
-                self.butt[c] = Free(name, position)
+                self.butt[c] = Free(position)
+            elif position in self.bomb:
+                self.butt[c] = Bomb()
             else:
                 self.butt[c] = Plant(name, position)
 
             self.grid.addWidget(self.butt[c], *position)
 
-            for position, in zip(self.bomb):
-                self.butt[c] = Bomb()
+        #self.butt[8].open()
 
-                self.grid.addWidget(self.butt[c], *position)
+
+
+            # for position, in zip(self.bomb):
+            #     self.butt[c] = Bomb()
+            #
+            #     self.grid.addWidget(self.butt[c], *position)
+
+
+
+
+
+
 
 
 

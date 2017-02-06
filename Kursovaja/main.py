@@ -211,6 +211,7 @@ class Saper(QMainWindow):
                 self.butt[c] = Bomb()
 
                 self.grid.addWidget(self.butt[c], *position)
+            c += 1
 
         # self.name = []
         #
