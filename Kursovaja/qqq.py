@@ -59,12 +59,13 @@ class Free(Button):
     plase = [(i, j) for i in range(1, 11) for j in range(1, 11)]
     pl = []
 
-    isOpened = False
+
 
 
     def __init__(self, posit, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        self.isOpened = False
         #self.cellValue = text
         self.position = posit
         self.pl.append(posit)
@@ -82,19 +83,29 @@ class Free(Button):
         # print(self.lfind[5])
 
     def open(self):
-        self.setDisabled(True)
-        self.setText(str())
-        #self.isOpened = True
-
-        #print(self.position)
-        #for i in Free.pl:
-        if Free(self.pl[5]).isOpened == False:
-            print(Free(self.pl[5]).position)
-            Free(self.pl[5]).isOpened = True
-            Free(self.pl[5]).click()
+        if self.isOpened == False:
+            self.setDisabled(True)
+            self.setText(str())
+            self.isOpened = True
+            if Free(self.pl[5]).isOpened == False:
+                Free(self.pl[5]).click()
 
         else:
             None
+
+
+
+
+        #print(self.position)
+        #for i in Free.pl:
+        # if Free(self.pl[5]).isOpened == False:
+        #     Free(self.pl[5]).isOpened = True
+        #     print(Free(self.pl[5]).position)
+        #
+        #     Free(self.pl[5]).open()
+        #
+        # else:
+        #     None
 
         # for i, j in self.find:
         #     #a = self.position[0]; b = self.position[1]
