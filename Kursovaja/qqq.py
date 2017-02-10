@@ -55,6 +55,7 @@ class Plant(Button):
 
 class Free(Button):
     miss = pyqtSignal()
+
     plase = [(i, j) for i in range(1, 11) for j in range(1, 11)]
     pl = []
 
@@ -63,7 +64,7 @@ class Free(Button):
         super().__init__(*args, **kwargs)
 
         #self.cellValue = text
-        #self.position = posit
+        self.position = posit
         self.pl.append(posit)
         self.butt = []
         for i in range(100):
@@ -81,7 +82,12 @@ class Free(Button):
     def open(self):
         self.setDisabled(True)
         self.setText(str())
-        print(self.posit)
+
+        #print(self.position)
+        #for i in Free.pl:
+        print(Free(self.pl[5]).position)
+        Free(self.pl[5]).onClick()                # ВОТ ТУТ КАК ВЫЗВАТЬ КЛИК ДРУГОЙ КНОПКИ БЕЗ РЕКУРСИИ МЕЖДУ РОДИТЕЛЕМ И МЕТОДОМ ОПЕН
+
         # for i, j in self.find:
         #     #a = self.position[0]; b = self.position[1]
         #     a += i; b += j
@@ -140,7 +146,7 @@ class Saper(QMainWindow):
     def init_ui(self):
         loadUi('KMainWindow.ui', self)
 
-        #self.resize(370, 370)
+
         self.setMinimumSize(330, 400)
         self.setMaximumSize(330, 400)
 
