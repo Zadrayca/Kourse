@@ -59,6 +59,8 @@ class Free(Button):
     plase = [(i, j) for i in range(1, 11) for j in range(1, 11)]
     pl = []
 
+    isOpened = False
+
 
     def __init__(self, posit, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -82,11 +84,17 @@ class Free(Button):
     def open(self):
         self.setDisabled(True)
         self.setText(str())
+        #self.isOpened = True
 
         #print(self.position)
         #for i in Free.pl:
-        print(Free(self.pl[5]).position)
-        Free(self.pl[5]).onClick()                # ВОТ ТУТ КАК ВЫЗВАТЬ КЛИК ДРУГОЙ КНОПКИ БЕЗ РЕКУРСИИ МЕЖДУ РОДИТЕЛЕМ И МЕТОДОМ ОПЕН
+        if Free(self.pl[5]).isOpened == False:
+            print(Free(self.pl[5]).position)
+            Free(self.pl[5]).isOpened = True
+            Free(self.pl[5]).click()
+
+        else:
+            None
 
         # for i, j in self.find:
         #     #a = self.position[0]; b = self.position[1]
