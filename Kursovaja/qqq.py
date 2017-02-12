@@ -3,7 +3,7 @@ import sys, random
 
 from PyQt5.QtCore import QTimer, pyqtSignal
 
-from PyQt5.QtWidgets import QMainWindow, QApplication, QToolButton, QGridLayout, QPushButton, QLCDNumber, QSizePolicy
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton
 
 from PyQt5.uic import loadUi
 
@@ -49,109 +49,24 @@ class Plant(Button):
         self.setDisabled(True)
         self.setText(str(self.cellValue))
         self.shooted.emit(self.cellValue)
-
-
+        self.setDown(True)
 
 
 class Free(Button):
     miss = pyqtSignal()
-
-    plase = [(i, j) for i in range(1, 11) for j in range(1, 11)]
-
     pl = []
-
 
     def __init__(self, posit, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.isOpened = False
-
         #self.cellValue = text
         self.position = posit
         self.pl.append(self.position)
-        self.butt = []
-        for i in range(100):
-            self.butt.append('button' + str(i))
-        m = [-1, 0, 1]
-        self.find = [(i, j) for i in range(-1, 2) for j in m]
-        self.find.pop(4)
-        self.lfind = []
-        # for i, j in self.find:
-        #     a = self.position[0]; b = self.position[1]
-        #     a += i; b += j
-        #     self.lfind.append((a, b))
-        # print(self.lfind[5])
-
 
     def open(self):
-        if self.isOpened == False:
-            self.setDisabled(True)
-            self.setText(str())
-            self.isOpened = True
-            # Free(self.pl[5]).setDisabled(True)
-            # if self.pl[5].isOpened == False:
-            #      self.pl[5].open()
-            # if self.pl[5].isOpened == False:
-            #     Free(self.pl[5]).click()
-
-            # if Free(self.pl[5]).isOpened == False:
-            #     Free(self.pl[5]).isOpened = True
-
-            #     Free(self.pl[5]).click()
-
-        else:
-            None
-
-
-        #print(self.position)
-        #for i in Free.pl:
-        # if Free(self.pl[5]).isOpened == False:
-        #     Free(self.pl[5]).isOpened = True
-        #     print(Free(self.pl[5]).position)
-        #
-        #     Free(self.pl[5]).open()
-        #
-        # else:
-        #     None
-
-        # for i, j in self.find:
-        #     #a = self.position[0]; b = self.position[1]
-        #     a += i; b += j
-        #     self.lfind.append((a, b))
-        # for z in self.lfind:
-        #     if z in self.pl:
-        #         Free(z).open()
-
-
-
-
-
-
-
-        #print(self.lfind)
-        #self.miss.connect(self.alg)
-        #a = self.position[0]; b = self.position[1]
-
-    #def alg(self):
-        # q = -1
-        # for x, y in self.plase:
-        #     q += 1
-        #     a = self.position[0]; b = self.position[1]
-        #     for w, e in self.find:
-        #
-        #         a -= w
-        #         b -= e
-        #         if x == a and y == b:
-        #             Free(' ', (x, y)).open()         # Вот тут нифига не понимаю как вызвать открытие кнопки(((
-        #         else:
-        #             Plant(' ', (x, y)).open()        # Ну и тут соответственно
-
-
-            #print(self.position)
-
-
-    #def alg(self, position):
-
+        self.setDisabled(True)
+        self.setText(str())
+        self.setDown(True)
 
 
 class Saper(QMainWindow):
@@ -185,6 +100,13 @@ class Saper(QMainWindow):
         self.okButton.clicked.connect(self.grid1)
         self.okButton.clicked.connect(self.init_time)
 
+    def win_ui(self):
+        loadUi('Win.ui', self)
+        self.timer.stop()
+        self.exitButton.clicked.connect(self.close)
+        self.okButton.clicked.connect(self.init_ui)
+        self.okButton.clicked.connect(self.grid1)
+        self.okButton.clicked.connect(self.init_time)
 
     def count(self):
         value = self.lcd.intValue()
@@ -198,7 +120,7 @@ class Saper(QMainWindow):
 
     def init_time(self):
         self.timer = QTimer()
-        self.lcd.display(100)
+        self.lcd.display(1000)
         self.timer.timeout.connect(self.count)
         self.timer.start(1000)
 
@@ -207,9 +129,26 @@ class Saper(QMainWindow):
         self.actionNew.triggered.connect(self.init_time)
         self.actionExit.triggered.connect(self.close)
 
+    def win(self):
+        x = []
+        for i in range(100):
+            if self.butt[i].isDown() == False:
+                x.append(1)
+            else:
+                x.append(2)
+        q = 0
+        for i in x:
+            if i == 1:
+                q += 0
+            else:
+                q += 1
+            if q >= 90:
+                self.win_ui()
 
-    def on_click(self):
+    def cl(self):
         pass
+
+
 
     def grid1(self):
 
@@ -290,6 +229,19 @@ class Saper(QMainWindow):
                 plant_l.append(c)
 
             self.grid.addWidget(self.butt[c], *position)
+
+        # if self.butt[0].isDown == True and self.butt[1].isDown == True:
+        #     print(123)
+        # else:
+        #     print(333)
+
+        #print(len(plant_l) + len(free_l))
+
+        for z in free_l:
+            self.butt[z].clicked.connect(self.win)
+
+        for z in plant_l:
+            self.butt[z].clicked.connect(self.win)
 
         for z in bomb_l:
             self.butt[z].clicked.connect(self.lose_bomb_ui)
