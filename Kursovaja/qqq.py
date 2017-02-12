@@ -30,19 +30,10 @@ class Bomb(Button):
         super().__init__(*args, **kwargs)
 
     def open(self):
+
         self.setDisabled(True)
         self.setText('*')
-        self.wasted.emit(self.lose_bomb_ui)
-        # self.clicked.connect(self.lose_bomb_ui)
-
-
-
-    def lose_bomb_ui(self):
-        loadUi('Bomb.ui', self)
-        self.exitButton.clicked.connect(self.close)
-        self.okButton.clicked.connect(self.init_ui)
-        self.okButton.clicked.connect(self.grid1)
-        self.okButton.clicked.connect(self.init_time)
+        self.wasted.emit()
 
 
 class Plant(Button):
@@ -58,7 +49,7 @@ class Plant(Button):
         self.setDisabled(True)
         self.setText(str(self.cellValue))
         self.shooted.emit(self.cellValue)
-        #print(self.position)
+
 
 
 
@@ -68,8 +59,6 @@ class Free(Button):
     plase = [(i, j) for i in range(1, 11) for j in range(1, 11)]
 
     pl = []
-
-
 
 
     def __init__(self, posit, *args, **kwargs):
@@ -175,18 +164,11 @@ class Saper(QMainWindow):
         self.init_time()
         # self.count()
 
-
-
-
-
-
     def init_ui(self):
         loadUi('KMainWindow.ui', self)
 
-
         self.setMinimumSize(330, 400)
         self.setMaximumSize(330, 400)
-
 
     def lose_ui(self):
         loadUi('Loose.ui', self)
@@ -195,13 +177,13 @@ class Saper(QMainWindow):
         self.okButton.clicked.connect(self.grid1)
         self.okButton.clicked.connect(self.init_time)
 
-
-    # def lose_bomb_ui(self):
-    #     loadUi('Bomb.ui', self)
-    #     self.exitButton.clicked.connect(self.close)
-    #     self.okButton.clicked.connect(self.init_ui)
-    #     self.okButton.clicked.connect(self.grid1)
-    #     self.okButton.clicked.connect(self.init_time)
+    def lose_bomb_ui(self):
+        loadUi('Bomb.ui', self)
+        self.timer.stop()
+        self.exitButton.clicked.connect(self.close)
+        self.okButton.clicked.connect(self.init_ui)
+        self.okButton.clicked.connect(self.grid1)
+        self.okButton.clicked.connect(self.init_time)
 
 
     def count(self):
@@ -216,7 +198,7 @@ class Saper(QMainWindow):
 
     def init_time(self):
         self.timer = QTimer()
-        self.lcd.display(10)
+        self.lcd.display(100)
         self.timer.timeout.connect(self.count)
         self.timer.start(1000)
 
@@ -228,8 +210,6 @@ class Saper(QMainWindow):
 
     def on_click(self):
         pass
-
-
 
     def grid1(self):
 
@@ -290,21 +270,29 @@ class Saper(QMainWindow):
         print(self.names)
         print(len(self.names))
         c = -1
+
+        bomb_l = []
+        free_l = []
+        plant_l = []
         for position, name in zip(self.plase, self.names):
-            # if name == "0":
-            #     name = 'B'
+
             c += 1
 
             if name == 0:
                 self.butt[c] = Free(position)
+                free_l.append(c)
             elif position in self.bomb:
                 self.butt[c] = Bomb()
+                bomb_l.append(c)
             else:
                 self.butt[c] = Plant(name, position)
+                plant_l.append(c)
 
             self.grid.addWidget(self.butt[c], *position)
 
-        # self.butt[8].click()
+        for z in bomb_l:
+            self.butt[z].clicked.connect(self.lose_bomb_ui)
+
 
 
 
