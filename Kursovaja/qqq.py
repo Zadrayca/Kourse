@@ -271,6 +271,7 @@ class Saper(QMainWindow):
         print(len(self.names))
         c = -1
 
+
         bomb_l = []
         free_l = []
         plant_l = []
