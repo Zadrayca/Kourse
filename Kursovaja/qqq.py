@@ -14,7 +14,6 @@ class Button(QPushButton):
 
         self.setMinimumSize(30, 30)
         self.setMaximumSize(30, 30)
-        # self.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
 
         self.setCheckable(True)
 
@@ -33,7 +32,17 @@ class Bomb(Button):
     def open(self):
         self.setDisabled(True)
         self.setText('*')
-        self.wasted.emit()
+        self.wasted.emit(self.lose_bomb_ui)
+        # self.clicked.connect(self.lose_bomb_ui)
+
+
+
+    def lose_bomb_ui(self):
+        loadUi('Bomb.ui', self)
+        self.exitButton.clicked.connect(self.close)
+        self.okButton.clicked.connect(self.init_ui)
+        self.okButton.clicked.connect(self.grid1)
+        self.okButton.clicked.connect(self.init_time)
 
 
 class Plant(Button):
@@ -57,6 +66,7 @@ class Free(Button):
     miss = pyqtSignal()
 
     plase = [(i, j) for i in range(1, 11) for j in range(1, 11)]
+
     pl = []
 
 
@@ -66,9 +76,10 @@ class Free(Button):
         super().__init__(*args, **kwargs)
 
         self.isOpened = False
+
         #self.cellValue = text
         self.position = posit
-        self.pl.append(posit)
+        self.pl.append(self.position)
         self.butt = []
         for i in range(100):
             self.butt.append('button' + str(i))
@@ -82,18 +93,25 @@ class Free(Button):
         #     self.lfind.append((a, b))
         # print(self.lfind[5])
 
+
     def open(self):
         if self.isOpened == False:
             self.setDisabled(True)
             self.setText(str())
             self.isOpened = True
-            if Free(self.pl[5]).isOpened == False:
-                Free(self.pl[5]).click()
+            # Free(self.pl[5]).setDisabled(True)
+            # if self.pl[5].isOpened == False:
+            #      self.pl[5].open()
+            # if self.pl[5].isOpened == False:
+            #     Free(self.pl[5]).click()
+
+            # if Free(self.pl[5]).isOpened == False:
+            #     Free(self.pl[5]).isOpened = True
+
+            #     Free(self.pl[5]).click()
 
         else:
             None
-
-
 
 
         #print(self.position)
@@ -170,64 +188,47 @@ class Saper(QMainWindow):
         self.setMaximumSize(330, 400)
 
 
+    def lose_ui(self):
+        loadUi('Loose.ui', self)
+        self.exitButton.clicked.connect(self.close)
+        self.okButton.clicked.connect(self.init_ui)
+        self.okButton.clicked.connect(self.grid1)
+        self.okButton.clicked.connect(self.init_time)
+
+
+    # def lose_bomb_ui(self):
+    #     loadUi('Bomb.ui', self)
+    #     self.exitButton.clicked.connect(self.close)
+    #     self.okButton.clicked.connect(self.init_ui)
+    #     self.okButton.clicked.connect(self.grid1)
+    #     self.okButton.clicked.connect(self.init_time)
+
+
     def count(self):
         value = self.lcd.intValue()
 
         if not value:
             self.timer.stop()
-            # свой сигнал
+            self.lose_ui()
         else:
             self.lcd.display(value - 1)
 
 
     def init_time(self):
         self.timer = QTimer()
-        self.lcd.display(100)
+        self.lcd.display(10)
         self.timer.timeout.connect(self.count)
         self.timer.start(1000)
 
     def init_signals(self):
-        pass
+        self.actionNew.triggered.connect(self.grid1)
+        self.actionNew.triggered.connect(self.init_time)
+        self.actionExit.triggered.connect(self.close)
 
-    # def alg(self, position):
-    #     q = -1
-    #     for x, y in self.plase:
-    #         q += 1
-    #         for a, b in position:
-    #             a -= 1; b -= 1
-    #             if x == a and y == b:
-    #                 self.butt[q].open()
-
-
-
-        # # global q
-        # #
-        # # q = []
-        # #
-        # # for i in range(81):
-        # #
-        # #     q.append(i)
-        # #
-        # # for i in q:
-        # #
-        # #     # if self.name[i].triggered():
-        # #     #     self.name[i].setDisabled(True)
-        # #
-        # #     self.name[i].clicked.connect(self.on_click)
-        #
-        # return q
 
     def on_click(self):
         pass
 
-        # if self.name[3].clicked(bool):
-
-
-
-        # if self.click() == True:
-        #
-        #     self.setDisabled(True)
-        #
 
 
     def grid1(self):
@@ -303,50 +304,7 @@ class Saper(QMainWindow):
 
             self.grid.addWidget(self.butt[c], *position)
 
-        #self.butt[8].open()
-
-
-
-            # for position, in zip(self.bomb):
-            #     self.butt[c] = Bomb()
-            #
-            #     self.grid.addWidget(self.butt[c], *position)
-
-
-
-
-
-
-
-
-
-        # self.name = []
-        #
-        # x = 0
-        #
-        # positions = [(i, j) for i in range(10) for j in range(10)]
-        #
-        # for position in positions:
-        #
-        #     self.name.append('button' + str(x))
-        #
-        #     #self.name = ('button' + str(x))
-        #
-        #     self.name[x] = Button()
-        #
-        #
-        #
-        #
-        #     self.grid.addWidget(self.name[x], *position)
-        #
-        #     x += 1
-        #
-        # return self.name
-        #
-        # #self.name.button0.setDisabled(True)
-
-
-
+        # self.butt[8].click()
 
 
 
