@@ -27,7 +27,7 @@
          </font>
         </property>
         <property name="text">
-         <string>Вы победили!!! Желаете сиграть еще раз?</string>
+         <string>Вы победили!!! Желаете сыграть еще раз?</string>
         </property>
        </widget>
       </item>
