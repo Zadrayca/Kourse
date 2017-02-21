@@ -89,6 +89,7 @@ class Saper(QMainWindow):
         loadUi('Loose.ui', self)
         self.exitButton.clicked.connect(self.close)
         self.okButton.clicked.connect(self.init_ui)
+        self.okButton.clicked.connect(self.init_signals)
         self.okButton.clicked.connect(self.grid1)
         self.okButton.clicked.connect(self.init_time)
 
@@ -97,6 +98,7 @@ class Saper(QMainWindow):
         self.timer.stop()
         self.exitButton.clicked.connect(self.close)
         self.okButton.clicked.connect(self.init_ui)
+        self.okButton.clicked.connect(self.init_signals)
         self.okButton.clicked.connect(self.grid1)
         self.okButton.clicked.connect(self.init_time)
 
@@ -105,6 +107,7 @@ class Saper(QMainWindow):
         self.timer.stop()
         self.exitButton.clicked.connect(self.close)
         self.okButton.clicked.connect(self.init_ui)
+        self.okButton.clicked.connect(self.init_signals)
         self.okButton.clicked.connect(self.grid1)
         self.okButton.clicked.connect(self.init_time)
 
@@ -155,20 +158,20 @@ class Saper(QMainWindow):
         b = 10
         m = [-1, 0, 1]
         find = [(i, j) for i in range(-1, 2) for j in m]
-        print(find)
+        # print(find)
 
         self.butt = []
         self.bomb = []
         self.names = [0 for i in range(100)]
 
         self.plase = [(i, j) for i in range(1, 11) for j in range(1, 11)]
-        print(self.plase)
+        # print(self.plase)
         while len(self.bomb) != b:
             z = random.choice(self.plase)
             if z not in self.bomb:
                 self.bomb.append(z)
 
-        print(self.bomb)
+        # print(self.bomb)
 
         for i in range(q):
             self.butt.append('button' + str(i))
@@ -177,32 +180,32 @@ class Saper(QMainWindow):
 
         g = -1
         for x, y in self.plase:
-            print('plase', x, y)
+            # print('plase', x, y)
             g += 1
 
             for i, j in find:
-                print('find', i, j)
+                # print('find', i, j)
                 z = 0
 
                 # if x == a and y == b:
                 #     z += 1
                 for a, b in self.bomb:
-                    print('bomb', a, b)
+                    # print('bomb', a, b)
 
                     r = None
                     t = None
                     r = x + i
                     t = y + j
-                    print('x', x, 'y', y)
-                    print('r', r, 't', t)
-                    print('bomb', a, b)
+                    # print('x', x, 'y', y)
+                    # print('r', r, 't', t)
+                    # print('bomb', a, b)
 
                     if r == a and t == b:
                         z += 1
                 self.names[g] += z
 
-        print(self.names)
-        print(len(self.names))
+        # print(self.names)
+        # print(len(self.names))
         c = -1
 
         bomb_l = []
@@ -239,11 +242,6 @@ class Saper(QMainWindow):
 
         for z in bomb_l:
             self.butt[z].clicked.connect(self.lose_bomb_ui)
-
-
-
-
-
 
 
 

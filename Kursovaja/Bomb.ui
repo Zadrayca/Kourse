@@ -22,12 +22,16 @@
         <property name="font">
          <font>
           <family>MS Shell Dlg 2</family>
+          <pointsize>10</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
         <property name="text">
          <string>Вы подорвались на мине и проиграли(((</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::AutoText</enum>
         </property>
        </widget>
       </item>
