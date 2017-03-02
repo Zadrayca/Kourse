@@ -1,10 +1,23 @@
 from pickle import dump, load
 
-class Config:
+CONFIG_FILENAME = 'conf.ini'
 
-    def __init__(self, filename):
+class Config:
+    __instance = None
+
+    def __init__(self, filename, **kwargs):
+        if not 'fdsgdcvdc' in kwargs and kwargs['fdsgdcvdc'] == 5464684654:
+            raise Exception('Do not create Config manuality. Use Config.getinstanse()')
+
         self.filename = filename
         self.params = {}
+
+
+    @classmethod
+    def get_instance(cls):
+        if not cls.__instance:
+            cls.__instance = Config(CONFIG_FILENAME, fdsgdcvdc=5464684654)
+        return cls.__instance
 
     def read(self):
         try:
@@ -29,13 +42,31 @@ class Config:
         pass
 
 if __name__ == '__main__':
+    a = Config.get_instance()
+    b = Config.get_instance()
+    print(a, b, a == b)
 
-    config = Config(filename='my_config.pickle')
-    config.read()
-    print('main_color:', config.main_color)
 
-    config.main_color = '#ff0000'
-    config.write()
+
+
+
+
+
+
+
+    #
+    # config = Config(filename='my_config.pickle')
+    # config.read()
+    # print('main_color:', config.main_color)
+    #
+    # config.main_color = '#ff0000'
+    # config.write()
+    #
+    #
+    #
+
+
+
 
 
 # при добавлении аттрибута в сетаттр проверять на равенство
